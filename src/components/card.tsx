@@ -1,20 +1,34 @@
 type CardProps = {
-    value: string;
-    onClick: () => void;
-    style: React.CSSProperties;
-  };
-  
-  const Card: React.FC<CardProps> = ({ value, onClick, style }) => {
-    return (
+  value: string;
+  suit: string;
+  onClick: () => void;
+  style: React.CSSProperties;
+};
+
+const suitIcons: { [key: string]: string } = {
+  Hearts: "♥",
+  Diamonds: "♦",
+  Clubs: "♣",
+  Spades: "♠",
+};
+
+const Card: React.FC<CardProps> = ({ value, suit, onClick, style }) => {
+  return (
+    <div
+      onClick={onClick}
+      style={style}
+      className="w-24 h-32 bg-gradient-to-br from-purple-500 to-blue-500 text-white flex flex-col items-center justify-center rounded-lg shadow-lg border-2 border-white hover:scale-110 hover:shadow-xl transition-transform duration-200 cursor-pointer"
+    >
+      <div className="text-2xl font-bold">{value}</div>
       <div
-        onClick={onClick}
-        style={style}
-        className="w-16 h-24 bg-blue-500 text-white flex items-center justify-center rounded-md shadow-lg hover:bg-blue-600 cursor-pointer"
+        className={`mt-1 text-3xl ${
+          suit === "Hearts" || suit === "Diamonds" ? "text-red-500" : ""
+        }`}
       >
-        {value}
+        {suitIcons[suit]}
       </div>
-    );
-  };
-  
-  export default Card;
-  
+    </div>
+  );
+};
+
+export default Card;

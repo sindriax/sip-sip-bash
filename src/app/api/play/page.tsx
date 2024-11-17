@@ -1,4 +1,4 @@
-"use client"; // Ensures client-side rendering for the gameboard
+"use client";
 
 import GameBoard from "@/components/gameboard";
 import { useLanguage } from "@/context/language-context";
